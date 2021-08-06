@@ -5,11 +5,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil</title>
+  <style>
+    /* vite fait */
+    body{
+      background: rgb(253, 249, 229);
+      color:#000;
+      font-family:monospace;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a{
+      color:#f60;
+      text-decoration: none;
+    }
+    .folder::before{
+      content:'📁';
+    }
+    .folder:hover::before{
+      content:'📂'
+    }
+    ul{
+      padding:0;
+    }
+    li{
+     display:block; 
+     border-top:1px solid rgba(0,0,0,0.2);
+     border-bottom:1px solid rgba(0,0,0,0.2);
+     padding:6px;
+    }
+  </style>
 </head>
 <body>
   <h1>Liste des projets</h1>
   <ul>
-    <li><a href="00-html/">00-html</a> base d'HTML</li>
+    <li><a class="folder" href="00-html/">00-html/</a> base d'HTML</li>
 
 
   </ul>
