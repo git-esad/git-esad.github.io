@@ -1,0 +1,31 @@
+/* le corps de la page et la cascade */
+body{
+  background: #faf2ed; /* le fond */
+  color:#111; /* la couleur du texte */
+  font-family: sans-serif; /* la famille typo ou la police */
+  line-height: 1.5; /* hauteur de ligne 1 = 100%, 1.5 = 150% */
+}
+
+/* les liens dans la navigation */
+nav a{
+  font-size: 32px; /* taille : ! on colle les unités */
+  text-decoration: none; /* pas de soulignement */
+  color:currentColor; /* la couleur de la nav */
+  display: block; /* à la ligne et sur toute la longueur */
+}
+
+/* TEASER */
+nav a:hover{
+  color:#f60;
+}
+
+nav a::after{
+  content:'👀';
+  font-size: 24px;
+  padding:4px 12px;
+  display: inline-block;
+}
+
+nav a:hover::after{
+  transform: scaleX(-1);
+}
