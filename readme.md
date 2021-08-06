@@ -1,5 +1,5 @@
 - 👋 Salut !
-- 👀 Quelques gabarits html/css pour apprendre les bases.
+- 👀 Vous trouverez ici quelques gabarits html/css pour apprendre les bases ou bien démarrer.
 - 🌱 Des graines de code. 
 - 📫 On se retouve aussi le lubndi à l'ésad ou sur discord!
 
