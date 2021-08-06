@@ -1,0 +1,76 @@
+/* le corps de la page et la cascade */
+body{
+  background: #faf2ed; /* le fond */
+  color:#111; /* la couleur du texte */
+  font-family: sans-serif; /* la famille typo ou la police */
+  line-height: 1.5; /* hauteur de ligne 1 = 100%, 1.5 = 150% */
+  display: grid; /* affichage en grille */
+  grid-template-columns: repeat(4, 200px); /* 4 colonnes de 200px */
+  gap:24px; /* goutière */
+  margin: 24px;
+}
+
+/* les images */
+img{
+  display: block;
+  max-width: 100%;
+  height:auto;
+  margin-bottom:12px;
+}
+
+
+/* les liens */
+
+a{
+  font-size: 16px; /* taille : ! on colle les unités */
+  text-decoration: none; /* pas de soulignement */
+  color:currentColor; /* la couleur de la nav */
+  display: grid;
+  align-content: start;
+  background: #fff;
+  height:100%;
+  text-align: center;
+  min-height:200px;
+}
+
+a:nth-of-type(4){
+  grid-row: 1/2;
+  grid-column: -2/-1;
+  align-content: center;
+}
+
+a:nth-of-type(4)::after{
+  display: none;
+}
+
+
+/* le H1 */
+
+h1{
+  grid-column: 1/2;
+}
+
+p{
+  grid-column: 2/4;
+  background: #fff;
+  margin:0;
+  padding:24px;
+  display: grid;
+  place-items: center;
+}
+
+/* teaser pour la suite  */
+a:hover{
+  color:#f60;
+}
+
+a::after{
+  content:'👀';
+  font-size: 24px;
+  padding:4px 12px;
+  display: inline-block;
+}
+
+a:hover::after{
+  transform: scaleX(-1);
+}

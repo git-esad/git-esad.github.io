@@ -14,7 +14,7 @@ nav a{
   display: block; /* à la ligne et sur toute la longueur */
 }
 
-/* TEASER */
+/* teaser pour la suite  */
 nav a:hover{
   color:#f60;
 }
