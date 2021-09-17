@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Faune";
+    src: url("fonts/Faune-Text_Regular.woff2") format("woff2"),
+           url("fonts/Faune-Text_Regular.woff") format("woff");
+   }
+
+
+.system{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.google-font{
+    font-family: 'Spectral', serif;
+}
+
+.web-font{
+    font-family: 'Faune', sans-serif;
+}
