@@ -64,3 +64,9 @@ a:hover{
     /* transform:rotate(5deg); */
     filter: none;
 }
+
+video{
+    display: block;
+    max-width: 100%;
+    height:auto;
+}
