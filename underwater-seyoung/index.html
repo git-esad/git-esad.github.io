@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice son</title>
+    <style>
+        body{
+          background: #000;
+          display: grid;
+            place-items: center;
+          color:#fff;
+          min-height: 99vh;
+        }
+        svg{
+            max-width: 100%;
+            max-height:calc(100vh - 300px);
+            height:auto;
+            display: block;
+            grid-column: 1/-1;
+
+          }
+          #waveform{
+            display:none;
+          }
+          
+
+        
+      
+    </style>
+</head>
+<body>
+
+    <div id="waveform"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/wavesurfer.js"></script>
+    <!-- <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.js"></script> -->
+    <script src="anim.js"></script>
+    <script>
+    /* Notre timeline */
+    const tl = gsap.timeline();
+
+    const wavesurfer = WaveSurfer.create({
+        container: document.querySelector('#waveform')
+    });
+
+    wavesurfer.load('Meydan_-_Underwater_Pt._2.mp3');
+
+    wavesurfer.on('ready', function () {
+      fetch("clip.svg")
+        .then(response => response.text())
+        .then(svg => {
+            document.body.insertAdjacentHTML("afterbegin", svg);
+            tl.to('body', {opacity:1, duration:wavesurfer.getDuration()});
+            anim(); // on peut créer l'animation 
+      });
+    });
+
+
+
+
+document.addEventListener('keyup',function(e){
+    if(e.code==="KeyP"){
+        if(wavesurfer.isPlaying()){
+            tl.pause();
+        }else{
+            tl.play();
+        }
+    wavesurfer.playPause();    
+    }    
+   if(e.code==="KeyF"){
+    document.body.requestFullscreen();
+   }
+});
+
+
+
+
+    </script>
+</body>
+</html>
