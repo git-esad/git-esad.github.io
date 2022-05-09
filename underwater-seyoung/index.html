@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice son</title>
+    <title>Clip son</title>
     <style>
         body{
           background: #000;
@@ -53,7 +53,7 @@
     wavesurfer.load('Meydan_-_Underwater_Pt._2.mp3');
 
     wavesurfer.on('ready', function () {
-      fetch("clip.svg")
+      fetch("Frame.svg")
         .then(response => response.text())
         .then(svg => {
             document.body.insertAdjacentHTML("afterbegin", svg);
