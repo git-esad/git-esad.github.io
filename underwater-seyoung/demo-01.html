@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice son</title>
+    <style>
+        body{
+          background: #000;
+          display: grid;
+          grid-template-columns:auto 100px auto 1fr;
+          gap:5px;
+          color:#fff;
+          font-family: monospace;
+          align-items: center;
+          margin:24px;
+        }
+        svg{
+            max-width: 100%;
+            max-height:calc(100vh - 300px);
+            height:auto;
+            display: block;
+            grid-column: 1/-1;
+
+          }
+          #waveform,
+          #timeline{
+            grid-column: 1/-1;
+          }
+
+          #play,
+          #timecode{
+            padding:16px;
+          }
+
+          #play{
+            cursor: pointer;
+            background: #fff;
+            border-radius: 8px;
+            color:#000;
+            height:10px;
+            line-height: 10px;
+          }
+          #zoom{
+            margin: 16px;
+          }
+          hr{
+            border: 0;
+            border-top: 1px solid #333;
+            grid-column: 1/-1;
+            margin:10px 0;
+          }
+      
+    </style>
+</head>
+<body>
+  <hr>
+  <div id="play" data-action="play">play/pause</div>
+  <div id="timecode">0.00</div>
+  <input id="zoom" data-action="zoom" type="range" min="1" max="200" value="0" style="width: 100%" />
+  <div id="waveform"></div>
+  <div id="timeline"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.js"></script>
+    <!-- <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.js"></script> -->
+
+    <!-- <script src="DrawSVGPlugin.min.js"></script> -->
+    <script src="MotionPathPLugin"></script>
+    <script src="DrawSVGPlugin.min.js"></script>
+    <script src="MorphSVGPlugin.js"></script>
+    <script src="anim.js"></script>
+    
+    <script>
+    /* Notre timeline */
+    const tl = gsap.timeline();
+    gsap.registerPlugin("drawSVG","morphSVG");
+    gsap.registerPlugin("MotionPathPlugin");
+    const wavesurfer = WaveSurfer.create({
+        container: document.querySelector('#waveform'),
+        waveColor: '#00FF00',
+        progressColor: '#00AA00',
+        cursorColor:'#eeeeee',
+        backend: 'MediaElement',
+        scrollParent: true,
+        plugins: [
+            WaveSurfer.timeline.create({
+                container: '#timeline',
+                fontFamily: 'monospace',
+                primaryColor: '#ffffff',
+                secondaryColor: '#eeeeee',
+                primaryFontColor:'#ffffff',
+                secondaryFontColor:'#eeeeee',
+                fontSize: 14,
+            })
+        ]
+    });
+
+    wavesurfer.load('Meydan_-_Underwater_Pt._2.mp3');
+
+    wavesurfer.on('ready', function () {
+      fetch("Frame.svg")
+        .then(response => response.text())
+        .then(svg => {
+            document.body.insertAdjacentHTML("afterbegin", svg);
+            tl.to('body', {opacity:1, duration:wavesurfer.getDuration()});
+            anim(); // on peut créer l'animation 
+      });
+    });
+
+    /* CODE poUr le chargement du SVG */
+
+
+    /* pour controler LE SON dans le HTML*/
+    // const audio = document.querySelector("audio");
+    
+    // gsap.registerPlugin("drawSVG");
+
+
+    /* function pour créer l'animation APRèS le chargement du SVG */
+
+
+
+
+        const slider = document.querySelector('[data-action="zoom"]');
+        const button = document.querySelector('[data-action="play"]');
+        const timecode = document.querySelector('#timecode');
+
+        slider.value = wavesurfer.params.minPxPerSec;
+        slider.min = wavesurfer.params.minPxPerSec;
+        slider.max = 1000;
+
+        slider.addEventListener('input', function() {
+            wavesurfer.zoom(Number(this.value));
+        });
+
+        wavesurfer.zoom(slider.value);
+        button.addEventListener('click', wavesurfer.playPause.bind(wavesurfer));
+
+
+        wavesurfer.on('audioprocess', function () {
+          timecode.innerHTML = wavesurfer.getCurrentTime().toFixed(2);
+        });
+
+        wavesurfer.on('seek', function () {
+          timecode.innerHTML = wavesurfer.getCurrentTime().toFixed(2);
+          let now = wavesurfer.getCurrentTime();
+          let dur = wavesurfer.getDuration();
+          tl.progress(now/dur).pause();
+        });
+
+
+        wavesurfer.on('play', function () {
+          timecode.innerHTML = wavesurfer.getCurrentTime().toFixed(2);
+          let now = wavesurfer.getCurrentTime();
+          let dur = wavesurfer.getDuration();
+          tl.progress(now/dur).play();
+        });
+
+        wavesurfer.on('pause', function () {
+          timecode.innerHTML = wavesurfer.getCurrentTime().toFixed(2);
+          let now = wavesurfer.getCurrentTime();
+          let dur = wavesurfer.getDuration();
+          tl.progress(now/dur).pause();
+        });
+
+
+    /* OUTILS pour la lecture */
+    // audio.addEventListener("play", function() {
+    //     let now = ( this.currentTime);
+    //     let dur = ( this.duration);
+    //     tl.progress(now/dur).play();
+    // });
+
+    // audio.addEventListener("pause", function() {
+    //     tl.pause();
+    //     let now = ( this.currentTime);
+    //     let dur = ( this.duration);
+    //     tl.progress(now/dur);
+    // });
+
+    // // seeked
+    // audio.addEventListener("seeking", function(e) {
+    //     let now = ( this.currentTime);
+    //     let dur = ( this.duration);
+    //     tl.progress(now/dur).pause();
+    // });
+
+
+
+    </script>
+</body>
+</html>
