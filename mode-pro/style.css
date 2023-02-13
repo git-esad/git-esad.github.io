@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(fonts/Grotesk-Regular.woff2) format('woff2');
+  }
+
+
+body{
+    background: rgb(4, 255, 117);
+    color: #ffffff;
+    font-family: sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Grotesk', sans-serif;
+    font-weight: 400; /* anti-faux-gras */
+}
+
+.header{
+}
+
+strong{
+    background: black;
+    color:#fff;
+}
+
+.strong-alert{
+    color:red;
+}
+
+img{
+    display: block;
+}
+
+.header-title{
+}
