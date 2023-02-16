@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo hover</title>
+    <style>
+     .header a{
+        color:#fff;
+        background: #000;
+        display:inline-block;
+        /* opacity:0; */
+        transition:0.5s;
+     }
+
+     .header a:hover{
+        color:blue;
+        background: white;
+        opacity:1;
+        transform:translate(0,2px);
+
+     }
+     .img-fx{
+        transition: 1s;
+        filter: grayscale(1);
+     }
+     body:hover .img-fx{
+        /* opacity:0.2; */
+        filter:none;
+     }
+
+     .a-fx{
+        display: grid;
+     }
+
+     .a-fx img,
+     .a-fx p{
+        grid-column: 1/-1;
+        grid-row:  1/-1;
+        transition: 1s;
+     }
+     .a-fx p{
+        opacity: 0;
+     }
+
+     .a-fx:hover .img-preview{
+        opacity: 0;
+     } 
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#">bonjour</a>
+        <a href="#">bonjour</a>
+    </header>
+    <img class="img-fx" src="https://picsum.photos/seed/02/200/200" alt="crips">
+
+    <a class="a-fx" href="#">
+       
+         <img  src="https://picsum.photos/seed/18/200/200" alt="crips">
+         <img class="img-preview" src="https://picsum.photos/seed/08/200/200" alt="crips">
+         <!-- <p>La légende de l'image</p> -->
+    </a>
+</body>
+</html>

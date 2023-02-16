@@ -1,0 +1,72 @@
+body{
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 99vh;
+}
+
+/* .home{
+    background: #F60 url(https://picsum.photos/seed/02/1280/1200) no-repeat;
+    background-size: cover;
+    background-position: 100% 100%;
+} */
+
+.header{
+    display:grid;
+    grid-template-columns: 1fr auto auto;
+    gap:24px;
+    /* background: #eee; */
+    align-items: baseline;
+    position: sticky;
+    top:8px;
+}
+
+.header a{
+    text-decoration: none;
+    color: currentColor;
+}
+
+.header img{
+    width: 70px;
+}
+
+.projects{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    gap:24px;
+    justify-content: center;
+}
+
+.project img{
+    display: block;
+    max-width: 100%;
+}
+
+.project-large{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.hero img{
+    max-width: 100vw;
+    display: block;
+    margin-left:-8px;
+}
+.article{
+    max-width: 960px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+    margin-top:24px;
+}
+
+.article img{
+    max-width: 100%;
+    display: block;
+    /* margin-bottom: 24px; */
+}
+
+.article p{
+    max-width: 450px;
+    margin: auto;
+}
